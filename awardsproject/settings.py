@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'bootstrap4',
     'awards.apps.AwardsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
