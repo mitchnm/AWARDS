@@ -1,28 +1,36 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+<nav class="navbar navbar-expand-lg" style="background-color: black;">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02"
     aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{% url 'welcome' %}" style="color:white; font-family: 'Righteous', cursive;">Home
+          <span class="sr-only">(current)</span></a>
+      </li>
+      {% if user.is_authenticated %}
+      <li class="nav-item">
+        <a class="nav-link" href="#" style="color:white; font-family: 'Righteous', cursive;">Post project</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Features</a>
+        <a class="nav-link" href="/accounts/password/change"
+          style="color:white; font-family: 'Righteous', cursive;">Change Password</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Pricing</a>
+        <a class="nav-link" href="/logout" style="color:white; font-family: 'Righteous', cursive;">Logout</a>
       </li>
+      {% else %}
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="{% url '/accounts/login' %}" style="color:white; font-family: 'Righteous', cursive;">Login</a>
       </li>
+      {% endif %}
     </ul>
+    <a class="navbar-brand" href="{% url 'welcome' %}"
+      style="position: absolute; left: 50%; margin-left: -50px !important;display: block;font-family: 'Rock Salt', cursive; color:white;">AWARDS</a>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
-      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
     </form>
   </div>
 </nav>
