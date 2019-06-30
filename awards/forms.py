@@ -6,10 +6,10 @@ from django.forms import ModelForm, Textarea, IntegerField
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        exclude = ['name']
+        exclude = [ 'name' ]
 
 
-class ImageForm(forms.ModelForm):
+class ProjectForm(forms.ModelForm):
     class Meta:
-        model = Image
-        exclude = ['likes', 'comments', 'user', 'profile']
+        model = Project
+        exclude = [ 'user' ]

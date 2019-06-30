@@ -11,7 +11,7 @@
       </li>
       {% if user.is_authenticated %}
       <li class="nav-item">
-        <a class="nav-link" href="#" style="color:white; font-family: 'Righteous', cursive;">Post project</a>
+        <a class="nav-link" href="{%url 'project' user.id%}" style="color:white; font-family: 'Righteous', cursive;">Post project</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'profile' user.id %}" style="color:yellow; font-family: 'Righteous', cursive;">Profile</a>
