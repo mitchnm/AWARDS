@@ -2,7 +2,87 @@
 {% load bootstrap4 %}
 {% block content %}
 {{block.super}}
-<div class="container">
-  <h1>BOOM</h1>
+<div id="container" style="background-color: black; background-size: cover;">
+  <span class="text1">Welcome to</span>
+  <span class="text2">awards</span>
 </div>
+
+<div class="container">
+  {% for img in project %}
+  <div class="row">
+    <div>
+      <div style="display: block; margin-right: auto; margin-left: auto;">
+        <a href="{% url 'profile' img.id %}" style="color: black; font-size: 25px">
+          {{img.user}}
+        </a>
+        <br>
+        <div>
+          <p style="text-align:center;"><img class="img-respronsive" src="{{img.image.url}}" alt="image"
+              style="height: 450px; width:550px;"></p>
+        </div>
+        <br>
+        <a href="{% url 'profile' user.id %}" style="color: black; ">
+          <strong>{{img.user}}</strong>
+        </a>
+        <a style="display: inline-block;" href="{{img.url}}">{{img.url}}</a>
+      </div>
+    </div>
+    <hr>
+  </div>
+  {% empty %}
+  {% endfor %}
+</div>
+<style>
+  * {
+    font-family: sans-serif;
+  }
+
+  #container {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+  }
+
+  #container span {
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .text1 {
+    color: white;
+    font-size: 60px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    margin-bottom: 20px;
+    background: black;
+    position: relative;
+    animation: text 1.5s 1;
+  }
+
+  .text2 {
+    font-size: 35px;
+    color: #6ab04c;
+  }
+
+  .container {
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  @keyframes text {
+    0% {
+      color: black;
+      margin-bottom: -40px;
+    }
+
+    35% {
+      letter-spacing: 50px;
+      margin-bottom: -40px;
+    }
+  }
+</style>
 {% endblock %}

@@ -8,7 +8,9 @@ from .forms import ProfileForm, ProjectForm
 # Create your views here.
 @login_required(login_url='/accounts/login/')
 def welcome(request):
-    return render(request, 'index.html')
+    project = Project.objects.all()
+    profile1 = Profile.objects.all()
+    return render(request, 'index.html', {"project": project, "profile1": profile1})
 
 
 @login_required(login_url='/accounts/login/')
