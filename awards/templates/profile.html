@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+{{ block.super}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <body>
+    <div style="margin-top:30px;" class="container">
+      <div clas="row">
+        <div class="col-md-3 "></div>
+        <div class="col-md-3 ">
+
+          <img src="{{profile1.profile_pic.url}}" class="img-circle" alt="Image"
+            style="height: 250px; width:250px;margin-right: 50px">
+
+        </div>
+        <div class="col-md-3 ">
+          <h3 style="font-family: 'Righteous', cursive;">{{user.username}}</h3>
+          <h2 style="font-family: 'Iceland', cursive;">{{profile1.bio}}</h2>
+          <br>
+          <p>followers <strong>5</strong> following <strong>2</strong></p>
+          <button class="btn btn-default" href="">Follow</button>
+          <p class="btn btn-default"> <a style="color: black;" href="#">Edit
+              profile</a></p>
+        </div>
+        <div class="col-md-3"></div>
+      </div>
+      <hr>
+    </div>
+  </body>
+  {% endblock %}
+
+</body>
+
+</html>

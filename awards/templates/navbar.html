@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarColor02">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="{% url 'welcome' %}" style="color:white; font-family: 'Righteous', cursive;">Home
+        <a class="nav-link" href="{% url 'welcome' %}" style="color:red; font-family: 'Righteous', cursive;">Home
           <span class="sr-only">(current)</span></a>
       </li>
       {% if user.is_authenticated %}
@@ -14,20 +14,24 @@
         <a class="nav-link" href="#" style="color:white; font-family: 'Righteous', cursive;">Post project</a>
       </li>
       <li class="nav-item">
+        <a class="nav-link" href="{% url 'profile' user.id %}" style="color:yellow; font-family: 'Righteous', cursive;">Profile</a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="/accounts/password/change"
           style="color:white; font-family: 'Righteous', cursive;">Change Password</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/logout" style="color:white; font-family: 'Righteous', cursive;">Logout</a>
+        <a class="nav-link" href="/logout" style="color:green; font-family: 'Righteous', cursive;">Logout</a>
       </li>
       {% else %}
       <li class="nav-item">
-        <a class="nav-link" href="{% url '/accounts/login' %}" style="color:white; font-family: 'Righteous', cursive;">Login</a>
+        <a class="nav-link" href="{% url '/accounts/login' %}"
+          style="color:white; font-family: 'Righteous', cursive;">Login</a>
       </li>
       {% endif %}
     </ul>
     <a class="navbar-brand" href="{% url 'welcome' %}"
-      style="position: absolute; left: 50%; margin-left: -50px !important;display: block;font-family: 'Rock Salt', cursive; color:white;">AWARDS</a>
+      style="position: absolute; left: 50%; margin-left: -50px !important;display: block;font-family: 'Rock Salt', cursive; color:white;">A<span style="color: red;">W</span>A<span style="color: yellow;">R</span>D<span style="color: green;">S</span></a>
     <form class="form-inline my-2 my-lg-0">
       <input class="form-control mr-sm-2" type="text" placeholder="Search">
       <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
