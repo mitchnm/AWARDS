@@ -7,6 +7,11 @@ class Profile(models.Model):
     profile_pic = models.ImageField(upload_to = 'awards/',blank=True)
     bio = models.CharField(max_length=250, null=True)
     
+    # @classmethod
+    # def search_by_name(cls,search_term):
+    #     profile = cls.objects.filter(name__icontains=search_term)
+    #     return profile
+
     def __str__(self):
         return self.bio
     
@@ -18,3 +23,5 @@ class Project(models.Model):
     project_name = models.CharField(max_length=60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=100)
+
+    
