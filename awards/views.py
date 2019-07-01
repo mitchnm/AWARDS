@@ -81,6 +81,22 @@ def search_results(request):
         message = "You haven't searched for any term"
         return render(request, 'search.html', {"message": message})
 
+@login_required(login_url='/accounts/login/')
+def review(request, id):
+    if request.method == 'POST':
+        print('noo')
+        form = RatingForm(request.POST, request.FILES)
+        if form.is_valid():
+            project = form.save(commit=False)
+            project.user = current_user
+            project.save()
+        return redirect('welcome')
+
+    else:
+        form = RatingForm()
+        print('xyz')
+    return render(request, 'project.html', {"form": form, 'user': current_user})
+
 
 class MerchList(APIView):
     permission_classes = (IsAdminOrReadOnly,)

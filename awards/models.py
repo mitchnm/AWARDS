@@ -23,6 +23,27 @@ class Project(models.Model):
     project_name = models.CharField(max_length=60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=100)
+    profile = models.ForeignKey(Profile, null=True)
+
+class Rating(models.Model):
+    RATING = (
+        (1, '1'),
+        (2, '2'),
+        (3, '3'),
+        (4, '4'),
+        (5, '5'),
+        (6,'6'),
+        (7,'7'),
+        (8,'8'),
+        (9,'9'),
+        (10,'10')
+    )
+    project = models.ForeignKey('Project')
+    user = models.ForeignKey(User)
+    design = models.IntegerField(choices=RATING)
+    usability = models.IntegerField(choices=RATING)
+    content = models.IntegerField(choices=RATING)
+    comment = models.CharField(max_length=500)
 
 class AwardsMerch(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
@@ -34,3 +55,4 @@ class ProjectMerch(models.Model):
     project_name = models.CharField(max_length=60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=100)
+
