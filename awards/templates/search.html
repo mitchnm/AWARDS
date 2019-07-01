@@ -9,17 +9,19 @@
   {% endif %}
   <div class="row">
     {% if profile %}
+    {% for profile1 in profile1 %}
     <div class="col-md-2"></div>
     <div class="col-md-4">
-      <img src="{{profile1.profile_pic.url}}" class="img-radius" alt="image" style="height:200px; width:200px;">
+      <img src="{{profile1.profile_pic.url}}" class="img-circle" alt="image" style="height:200px; width:200px;">
     </div>
     <div lass="col-md-4">
-      <h2 style="text-align: center;font-family: 'Righteous', cursive;font-size: 60px">{{profile1.name}}</h2>
+      <h2 style="text-align: center;font-family: 'Righteous', cursive;font-size: 60px; color: white;">{{profile1.name}}</h2>
       <br><br>
       {% autoescape on %}
-      <p style="text-align: center; font-family: 'Iceland', cursive;font-size: 30px">{{profile1.bio| safe}}</p>
+      <p style="text-align: center; font-family: 'Iceland', cursive;font-size: 30px; color: white;">{{profile1.bio| safe}}</p>
       {% endautoescape %}
       <a class="btn btn-default" href="{% url 'profile' user.id %}">Visit profile</a>
+      {% endfor %}
     </div>
     <div class="col-md-2"></div>
     <hr>

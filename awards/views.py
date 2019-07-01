@@ -71,8 +71,7 @@ def search_results(request):
 
     if 'profile' in request.GET and request.GET["profile"]:
         search_term = request.GET.get("profile")
-        searched_profiles = User.objects.filter(
-            username__icontains=search_term)
+        searched_profiles = User.objects.filter(username__icontains=search_term)
         profile1 = Profile.objects.all()
         message = f"{search_term}"
         return render(request, 'search.html', {"message": message, "profile": searched_profiles, "profile1": profile1})
