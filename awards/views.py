@@ -101,7 +101,7 @@ def rating(request, id):
     else:
         form = RatingForm()
         print('xyz')
-    return render(request, 'review.html', {"form": form, 'user': current_user, 'profile':profile, 'project':project})
+    return render(request, 'review.html', {"form": form, 'user': current_user, 'profile':profile, 'project':project, 'rating':rating})
 
 class MerchList(APIView):
     permission_classes = (IsAdminOrReadOnly,)

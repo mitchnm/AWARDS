@@ -2,8 +2,13 @@
 {% load bootstrap4 %}
 {% block content %}
 <div class="container">
-  <img class="img-respronsive" src="{{project.image.url}}" alt="image" style="height: 450px; width:550px;">
+  <img class="img-respronsive" src="{{project.image.url}}" alt="image"
+    style="height: 450px; width:550px; margin-left: 25%">
+  <br><br>
   <h3 style="text-align: center;"><u>REVIEWS</u></h3>
+  <h4>Design: <strong>{{rating.design}}</strong> Usability: <strong>{{rating.usability}}</strong> Content:
+    <strong>{{rating.content}}</strong></h4>
+  <h3>{{rating.comment}}</h3>
   <div class="card mt-5">
     <div class="card-body">
       <form action="/rating/{{user.id}}" method="post" enctype="multipart/form-data">
