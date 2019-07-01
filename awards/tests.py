@@ -1,22 +1,20 @@
 from django.test import TestCase
-
-# Create your tests here.
 from django.contrib.auth.models import User
-from .models import Profile,Image,Comment
+from .models import Profile, Project, Rating
 
 # Create your tests here.
-class ImageTestCase(TestCase):
+class ProjectTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create(username='a')
-        self.newimage = Image(image='media/insta/Fashion.jpg',image_name='Fashion',id =1,caption='Delicious',profile=self.user,likes=1)
+        self.newproject = Project(image='media/insta/Fashion.jpg',project_name='Fashion',project_description='Delicious',id =1,url='http://127.0.0.1:8000/'profile=self.user)
         
     def test_instance(self):
         self.assertTrue(isinstance(self.newimage,Image))
 
     def test_save_image(self):
-        self.newimage.save()
-        images = Image.objects.all()
-        self.assertTrue(len(images)>0)
+        self.newproject.save()
+        project = Project.objects.all()
+        self.assertTrue(len(project)>0)
 
 class ProfileTest(TestCase):
     def setUp(self):
