@@ -8,24 +8,22 @@
 </div>
 
 <div class="container">
-  <div class="row">
-    {% for img in project %}
-    <div class="col-md-4">
-      <a href="{% url 'profile' img.id %}" style="color: black; font-size: 25px">{{img.user}}</a>
+  {% for img in project %}
+  <div class="row" ">
+    <div class="col-md-1" style="left: 22.5%;">
+      <a href="{% url 'profile' img.id %}" style="color: white; font-size: 25px">{{img.user}}</a>
       <br>
-      <div>
-        <img class="img-respronsive" src="{{img.image.url}}" alt="image" style="height: 450px; width:550px;">
-      </div>
+      <img class="img-respronsive" src="{{img.image.url}}" alt="image" style="height: 550px; width:600px;">
       <br>
-      <a href="{% url 'profile' user.id %}" style="color: black; "><strong>{{img.user}}</strong></a>
-      <a href="{{img.url}}">{{img.url}}</a>
-      <button class="btn btn-default">
-        <a href="{% url 'rating' img.id %}" style="color: black; text-align: right;  ">comments</a>
+      <a href="{% url 'profile' user.id %}" style="color: white;"><strong>{{img.user}}</strong></a>
+      <a href="{{img.url}}" style="color: white;">{{img.url}}</a>
+      <button class="btn btn-dark">
+        <a href="{% url 'rating' img.id %}" style="color: black;">comments</a>
       </button>
       <hr>
     </div>
-    {% empty %}
   </div>
+  {% empty %}
   {% endfor %}
 </div>
 <style>
@@ -37,6 +35,7 @@
     transform: translate(-50%, -50%);
     width: 100%;
     color: purple;
+
   }
 
   #container span {
@@ -62,7 +61,6 @@
 
   .container {
     justify-content: center;
-    width: 100%;
     height: 100vh;
   }
 

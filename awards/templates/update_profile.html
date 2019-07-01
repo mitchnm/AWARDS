@@ -18,9 +18,9 @@
 
 <body>
   {% block content %}
-  <div class="container">
-    <div class="card mt-5">
-      <div class="card-body">
+  <div class="container" >
+    <div class="card mt-5" style="background-color: black">
+      <div class="card-body" style="color: white">
         <form action="{%url 'update_profile' user.id %}" method="POST" enctype="multipart/form-data">
           {%csrf_token%}
           {% bootstrap_form form%}

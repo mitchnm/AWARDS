@@ -5,18 +5,18 @@
   <img class="img-respronsive" src="{{project.image.url}}" alt="image"
     style="height: 450px; width:550px; margin-left: 25%">
   <br><br>
-  <h3 style="text-align: center;"><u>REVIEWS</u></h3>
-  <h4>Design: <strong>{{rating.design}}</strong> Usability: <strong>{{rating.usability}}</strong> Content:
+  <h3 style="text-align: center; color:white;"><u>REVIEWS</u></h3>
+  <h4 style="color:white;"">Design: <strong>{{rating.design}}</strong>         Usability: <strong>{{rating.usability}}</strong>        Content:
     <strong>{{rating.content}}</strong></h4>
   <h3>{{rating.comment}}</h3>
-  <div class="card mt-5">
-    <div class="card-body">
+  <div class=" card mt-5" style="background-color: black">
+    <div class="card-body" style="color: white">
       <form action="/rating/{{user.id}}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
         {% bootstrap_form form%}
         <input type="submit" class="btn btn-primary btn-sm" value="Post">
       </form>
     </div>
-  </div>
+</div>
 </div>
 {% endblock %}
