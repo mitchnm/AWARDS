@@ -6,9 +6,19 @@
     style="height: 450px; width:550px; margin-left: 25%">
   <br><br>
   <h3 style="text-align: center; color:white;"><u>REVIEWS</u></h3>
-  <h4 style="color:white;"">Design: <strong>{{rating.design}}</strong>         Usability: <strong>{{rating.usability}}</strong>        Content:
-    <strong>{{rating.content}}</strong></h4>
-  <h3>{{rating.comment}}</h3>
+  <div class="row">
+    {% for rating in rating %}
+    <div class="col-md-6">
+      <div class="card-body">
+        <h3 style="color:white; font-family: 'Righteous', cursive">{{rating.user}}</h3>
+        <h4 style="color:white;">Design: <strong>{{rating.design}}</strong> Usability:
+          <strong>{{rating.usability}}</strong>
+          Content:<strong>{{rating.content}}</strong></h4>
+        <h3 style="color:white;">Comment: {{rating.comment|upper}}</h3>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
   <div class=" card mt-5" style="background-color: black">
     <div class="card-body" style="color: white">
       <form action="/rating/{{user.id}}" method="post" enctype="multipart/form-data">
@@ -17,6 +27,6 @@
         <input type="submit" class="btn btn-primary btn-sm" value="Post">
       </form>
     </div>
-</div>
+  </div>
 </div>
 {% endblock %}
