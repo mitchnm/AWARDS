@@ -11,7 +11,7 @@
   {% for img in project %}
   <div class="row" ">
     <div class="col-md-1" style="left: 22.5%;">
-      <a href="{% url 'profile' img.id %}" style="color: white; font-size: 25px">Project name:{{img.project_name}}</a>
+      <a href="{% url 'profile' img.id %}" style="color: white; font-size: 25px">Name: {{img.project_name}}</a>
       <br>
       <img class="img-respronsive" src="{{img.image.url}}" alt="image" style="height: 550px; width:600px;">
       <br>
