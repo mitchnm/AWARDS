@@ -4,6 +4,12 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm, ProjectForm
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import AwardsMerch
+from .serializer import MerchSerializer
+from rest_framework import status
+from .permissions import IsAdminOrReadOnly
 
 # Create your views here.
 @login_required(login_url='/accounts/login/')
@@ -59,16 +65,33 @@ def new_project(request, id):
         print('xyz')
     return render(request, 'project.html', {"form": form, 'user': current_user})
 
+
 @login_required(login_url='/accounts/login/')
 def search_results(request):
 
     if 'profile' in request.GET and request.GET["profile"]:
         search_term = request.GET.get("profile")
-        searched_profiles = User.objects.filter(username__icontains=search_term)
+        searched_profiles = User.objects.filter(
+            username__icontains=search_term)
         profile1 = Profile.objects.all()
         message = f"{search_term}"
-        return render(request, 'search.html',{"message":message,"profile": searched_profiles, "profile1":profile1})
+        return render(request, 'search.html', {"message": message, "profile": searched_profiles, "profile1": profile1})
 
     else:
         message = "You haven't searched for any term"
-        return render(request, 'search.html',{"message":message})
+        return render(request, 'search.html', {"message": message})
+
+
+class MerchList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+    def get(self, request, format=None):
+        all_merch = AwardsMerch.objects.all()
+        serializers = MerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = MerchSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
