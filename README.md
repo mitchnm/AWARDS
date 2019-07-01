@@ -22,9 +22,9 @@ The application allows a user to post a project he/she has created and get it re
 ## User stories
 As a user you should be able to:
 * View posted projects and their details.
-* Post a project to be rated/reviewed
-* Rate/ review other users' projects
-* Search for users 
+* Post a project to be rated/reviewed.
+* Rate/review other users' projects.
+* Search for users.
 * View your profile page.
 
 ## Technologies used
