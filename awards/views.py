@@ -6,8 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from .forms import ProfileForm, ProjectForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from .models import AwardsMerch
-from .serializer import MerchSerializer
+from .models import AwardsMerch, ProjectMerch
+from .serializer import ProfileMerchSerializer, ProjectMerchSerializer
 from rest_framework import status
 from .permissions import IsAdminOrReadOnly
 
@@ -87,11 +87,11 @@ class MerchList(APIView):
 
     def get(self, request, format=None):
         all_merch = AwardsMerch.objects.all()
-        serializers = MerchSerializer(all_merch, many=True)
+        serializers = ProfileMerchSerializer(all_merch, many=True)
         return Response(serializers.data)
 
     def post(self, request, format=None):
-        serializers = MerchSerializer(data=request.data)
+        serializers = ProfileMerchSerializer(data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data, status=status.HTTP_201_CREATED)
@@ -109,12 +109,57 @@ class MerchDescription(APIView):
 
     def get(self, request, pk, format=None):
         merch = self.get_merch(pk)
-        serializers = MerchSerializer(merch)
+        serializers = ProfileMerchSerializer(merch)
         return Response(serializers.data)
 
     def put(self, request, pk, format=None):
         merch = self.get_merch(pk)
-        serializers = MerchSerializer(merch, request.data)
+        serializers = ProfileMerchSerializer(merch, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        merch.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ProjectMerchList(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def get(self, request, format=None):
+        all_merch = ProjectMerch.objects.all()
+        serializers = ProjectMerchSerializer(all_merch, many=True)
+        return Response(serializers.data)
+
+    def post(self, request, format=None):
+        serializers = ProjectMerchSerializer(data=request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class ProjectMerchDescription(APIView):
+    permission_classes = (IsAdminOrReadOnly,)
+
+    def get_merch(self, pk):
+        try:
+            return ProjectMerch.objects.get(pk=pk)
+        except ProjectMerch.DoesNotExist:
+            return Http404
+
+    def get(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        serializers = ProjectMerchSerializer(merch)
+        return Response(serializers.data)
+
+    def put(self, request, pk, format=None):
+        merch = self.get_merch(pk)
+        serializers = ProjectMerchSerializer(merch, request.data)
         if serializers.is_valid():
             serializers.save()
             return Response(serializers.data)

@@ -29,3 +29,8 @@ class AwardsMerch(models.Model):
     profile_pic = models.ImageField(upload_to = 'awards/',blank=True)
     bio = models.CharField(max_length=250, null=True)
 
+class ProjectMerch(models.Model):
+    image = models.ImageField(upload_to = 'awards/')
+    project_name = models.CharField(max_length=60)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    url = models.CharField(max_length=100)
