@@ -25,7 +25,10 @@ class Project(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=100)
     profile = models.ForeignKey(Profile, null=True)
-
+    
+    def save_profile(self):
+        self.save()
+        
 class Rating(models.Model):
     RATING = (
         (1, '1'),
@@ -45,6 +48,9 @@ class Rating(models.Model):
     usability = models.IntegerField(choices=RATING)
     content = models.IntegerField(choices=RATING)
     comment = models.CharField(max_length=500)
+    
+    def save_profile(self):
+        self.save()
 
 class AwardsMerch(models.Model):
     name = models.OneToOneField(User, on_delete=models.CASCADE,primary_key=True)
@@ -56,4 +62,5 @@ class ProjectMerch(models.Model):
     project_name = models.CharField(max_length=60)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=100)
-
+    
+    
