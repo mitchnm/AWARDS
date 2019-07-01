@@ -19,14 +19,13 @@ The application allows a user to post a project he/she has created and get it re
 * Read the specs and requirements files and Install all the requirements.
 * Access the application through `localhost:5000`
 
-## BDD
-
-| Behavior                    | Input                         | Output                       |
-|----------------------------:|:-----------------------------:|-----------------------------:|
-|               |                |          |
-|               |             |         |
-|           |                 |                      |
-|           |                 |                   |
+## User stories
+As a user you should be able to:
+* View posted projects and their details.
+* Post a project to be rated/reviewed
+* Rate/ review other users' projects
+* Search for users 
+* View your profile page.
 
 ## Technologies used
 

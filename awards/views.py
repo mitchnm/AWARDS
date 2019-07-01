@@ -59,7 +59,7 @@ def new_project(request, id):
             project.user = current_user
             project.save()
         return redirect('welcome')
-
+ 
     else:
         form = ProjectForm()
         print('xyz')
