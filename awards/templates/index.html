@@ -26,9 +26,6 @@
   {% endfor %}
 </div>
 <style>
-
-  
-
   #container {
     text-align: center;
     position: absolute;
@@ -78,4 +75,8 @@
     }
   }
 </style>
+{% block scripts %}
+{{block.super}}
+<script type="text/javascript" src="{%static 'js/newsletter.js'%}"></script>
+{% endblock %}
 {% endblock %}
