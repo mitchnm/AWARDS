@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
-from .models import Project, Profile
+from .models import Project, Profile, Rating
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
-from .forms import ProfileForm, ProjectForm
+from .forms import ProfileForm, ProjectForm, RatingForm
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import AwardsMerch, ProjectMerch
@@ -82,21 +82,26 @@ def search_results(request):
         return render(request, 'search.html', {"message": message})
 
 @login_required(login_url='/accounts/login/')
-def review(request, id):
+def rating(request, id):
+    current_user = request.user
+    rating = Rating.objects.filter(project_id=id)
+    profile = Profile.objects.all()
+    project = Project.objects.get(id=id)
     if request.method == 'POST':
         print('noo')
         form = RatingForm(request.POST, request.FILES)
         if form.is_valid():
-            project = form.save(commit=False)
-            project.user = current_user
-            project.save()
+            rating = form.save(commit=False)
+            rating.project = project
+            rating.user = current_user
+            rating.name_id = current_user.id
+            rating.save()
         return redirect('welcome')
 
     else:
         form = RatingForm()
         print('xyz')
-    return render(request, 'project.html', {"form": form, 'user': current_user})
-
+    return render(request, 'review.html', {"form": form, 'user': current_user, 'profile':profile, 'project':project})
 
 class MerchList(APIView):
     permission_classes = (IsAdminOrReadOnly,)

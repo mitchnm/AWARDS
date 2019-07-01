@@ -12,7 +12,9 @@ urlpatterns = [
   url(r'^api/merch/$', views.MerchList.as_view()),
   url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',views.MerchDescription.as_view()),
   url(r'^api/merch/$', views.ProjectMerchList.as_view()),
-  url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',views.ProjectMerchDescription.as_view())
+  url(r'api/merch/merch-id/(?P<pk>[0-9]+)/$',views.ProjectMerchDescription.as_view()),
+  url(r'^rating/(\d+)',views.rating,name='rating'),
+
 ]
 
 if settings.DEBUG:

@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{% load bootstrap4 %}
+{% block content %}
+<div class="container">
+  <img class="img-respronsive" src="{{project.image.url}}" alt="image" style="height: 450px; width:550px;">
+  <h3 style="text-align: center;"><u>REVIEWS</u></h3>
+  <div class="card mt-5">
+    <div class="card-body">
+      <form action="/rating/{{user.id}}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        {% bootstrap_form form%}
+        <input type="submit" class="btn btn-primary btn-sm" value="Post">
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

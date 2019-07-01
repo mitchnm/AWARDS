@@ -19,6 +19,9 @@
       <br>
       <a href="{% url 'profile' user.id %}" style="color: black; "><strong>{{img.user}}</strong></a>
       <a href="{{img.url}}">{{img.url}}</a>
+      <button class="btn btn-default">
+        <a href="{% url 'rating' img.id %}" style="color: black; text-align: right;  ">comments</a>
+      </button>
       <hr>
     </div>
     {% empty %}
